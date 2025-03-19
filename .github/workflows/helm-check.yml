@@ -1,0 +1,26 @@
+name: Helm Chart Lint and Test
+
+on:
+  push:
+      branches:
+        - main
+  pull_request:
+      branches:
+        - main
+
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        
+      - name: Setup Helm
+        uses: azure/setup-helm@v3
+        with:
+          version: 'latest'
+
+      - name: Lint Helm Charts
+        run: |
+          helm lint ./helm/time-server
+          helm lint ./helm/auth-server
