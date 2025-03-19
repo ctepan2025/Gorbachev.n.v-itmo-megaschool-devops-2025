@@ -1,0 +1,13 @@
+containers:
+  - name: time-server
+    image: "{{ .Values.time-server.image }}"
+    ports: 
+      - containerPort: 8001
+    env: {{ .Values.time-server.env }}
+
+  - name: auth-server
+    image: "{{ .Values.auth-server.image }}"
+    ports: 
+      - containerPort: 8000
+    env: {{ .Values.auth-server.env }}
+    
